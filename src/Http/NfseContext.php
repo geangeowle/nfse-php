@@ -8,14 +8,19 @@ final class NfseContext
 {
     public function __construct(
         public TipoAmbiente $ambiente,
-        public ?string $certificatePath,
-        public string $certificatePassword,
+        public ?string $certificatePath = null,
+        public string $certificatePassword = '',
         public ?string $codigoMunicipio = null,
         public ?\Nfse\Dto\Http\Endpoint $endpoint = null,
         public ?string $certificateContent = null,
+        public ?string $nssCertificateSelector = null,
     ) {
-        if ($certificatePath === null && $certificateContent === null) {
-            throw new \InvalidArgumentException('Informe certificatePath ou certificateContent.');
+        if ($certificatePath === null && $certificateContent === null && $nssCertificateSelector === null) {
+            throw new \InvalidArgumentException('Informe certificado PFX ou seletor de certificado NSS.');
+        }
+
+        if ($nssCertificateSelector !== null && ($certificatePath !== null || $certificateContent !== null)) {
+            throw new \InvalidArgumentException('Use certificado NSS ou certificado PFX, não ambos.');
         }
     }
 }
