@@ -26,7 +26,7 @@ class SefinClient implements SefinNacionalInterface
 
     public function __construct(private NfseContext $context)
     {
-        $resolver = new SefinEndpointResolver();
+        $resolver = new SefinEndpointResolver;
         $this->baseUrl = $resolver->resolve($this->context);
         $this->httpClient = $this->createHttpClient();
     }
@@ -71,7 +71,7 @@ class SefinClient implements SefinNacionalInterface
         }
 
         return new Client([
-            'base_uri' => rtrim($this->baseUrl, '/') . '/',
+            'base_uri' => rtrim($this->baseUrl, '/').'/',
             'handler' => Retry::stack(),
             'curl' => $curlOptions,
             RequestOptions::HEADERS => [
@@ -217,8 +217,8 @@ class SefinClient implements SefinNacionalInterface
     }
 
     /**
-     * @param  \Exception|GuzzleException  $e
      * @return mixed
+     *
      * @throws NfseApiException
      */
     private function handleException(\Exception|GuzzleException $e)

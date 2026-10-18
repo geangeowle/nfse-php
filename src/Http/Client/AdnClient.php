@@ -308,8 +308,8 @@ class AdnClient implements AdnDanfseInterface
     }
 
     /**
-     * @param  \GuzzleHttp\Exception\RequestException|\Exception  $e
      * @return mixed
+     *
      * @throws NfseApiException
      */
     private function handleException(\GuzzleHttp\Exception\RequestException|\Exception $e)

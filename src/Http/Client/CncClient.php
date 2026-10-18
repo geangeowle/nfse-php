@@ -152,9 +152,9 @@ class CncClient
     }
 
     /**
-     * @param  \Exception|GuzzleException  $e
      * @param  array  $decoded
      * @return mixed
+     *
      * @throws NfseApiException
      */
     private function handleException(\Exception|GuzzleException $e)
