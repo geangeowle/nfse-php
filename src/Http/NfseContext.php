@@ -19,8 +19,8 @@ final class NfseContext
             throw new \InvalidArgumentException('Informe certificado PFX ou seletor de certificado NSS.');
         }
 
-        if ($nssCertificateSelector !== null && ($certificatePath !== null || $certificateContent !== null)) {
-            throw new \InvalidArgumentException('Use certificado NSS ou certificado PFX, não ambos.');
+        if ($nssCertificateSelector !== null && trim($nssCertificateSelector) === '') {
+            throw new \InvalidArgumentException('O seletor do certificado NSS não pode ser vazio.');
         }
     }
 }
