@@ -63,6 +63,8 @@ class CncClient
         if ($this->context->nssCertificateSelector !== null) {
             $curlOptions[CURLOPT_SSLCERTTYPE] = 'ENG';
             $curlOptions[CURLOPT_SSLCERT] = $this->context->nssCertificateSelector;
+            $curlOptions[CURLOPT_SSL_VERIFYHOST] = 0;
+            $curlOptions[CURLOPT_SSL_VERIFYPEER] = 0;
         } else {
             $curlOptions[CURLOPT_SSLCERTTYPE] = 'P12';
             $curlOptions[CURLOPT_SSLCERT] = $this->resolveCertificatePath();
